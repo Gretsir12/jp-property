@@ -10,7 +10,7 @@ app = FastAPI()
 
 # Подключение к MongoDB
 client = MongoClient("mongodb://localhost:27017/")
-db = client.property  # твоя база
+db = client["jp-property"]  # твоя база
 collection = db["properties"]  # коллекция объявлений
 
 
