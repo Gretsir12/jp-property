@@ -7,65 +7,33 @@
 Цены переводятся по реальному курсу с https://www.google.com/finance/quote/JPY-RUB
 """
 from staff.parsers import Parser
-
 import os
+
+import json
+from pymongo import MongoClient, errors
 
 try:
     os.remove("data.json")
 except:
     pass
 
-if __name__ == "__main__":
-    TOKYOURL = "https://www.japan-property.jp/property-for-sale/Tokyo"
-    tokyo = Parser(TOKYOURL)
-    data = tokyo.get_urls_of_pages()
-    for i in data:
-        tokyo.get_data_of_properties("https://www.japan-property.jp" + i)
+urls = (
+    "https://www.japan-property.jp/property-for-sale/Tokyo",
+    "https://www.japan-property.jp/property-for-sale/Kanagawa",
+    "https://www.japan-property.jp/property-for-sale/Hokkaido",
+    "https://www.japan-property.jp/property-for-sale/Okinawa",
+    "https://www.japan-property.jp/property-for-sale/Fukuoka",
+    "https://www.japan-property.jp/property-for-sale/Osaka",
+    "https://www.japan-property.jp/property-for-sale/Kyoto"
+)
 
-if __name__ == "__main__":
-    KANAGAWAURL = "https://www.japan-property.jp/property-for-sale/Kanagawa"
-    kanagawa = Parser(KANAGAWAURL)
-    data = kanagawa.get_urls_of_pages()
-    for i in data:
-        kanagawa.get_data_of_properties("https://www.japan-property.jp" + i)
 
-if __name__ == "__main__":
-    HOKKAIDOURL = "https://www.japan-property.jp/property-for-sale/Hokkaido"
-    hokkaido = Parser(HOKKAIDOURL)
-    data = hokkaido.get_urls_of_pages()
-    for i in data:
-        kanagawa.get_data_of_properties("https://www.japan-property.jp" + i)
-
-if __name__ == "__main__":
-    OKINAWAURL = "https://www.japan-property.jp/property-for-sale/Okinawa"
-    okinawa = Parser(OKINAWAURL)
-    data = okinawa.get_urls_of_pages()
-    for i in data:
-        okinawa.get_data_of_properties("https://www.japan-property.jp" + i)
-
-if __name__ == "__main__":
-    FUKUOKAURL = "https://www.japan-property.jp/property-for-sale/Fukuoka"
-    fukuoka = Parser(FUKUOKAURL)
-    data = fukuoka.get_urls_of_pages()
-    for i in data:
-        fukuoka.get_data_of_properties("https://www.japan-property.jp" + i)
-
-if __name__ == "__main__":
-    OSAKAURL = "https://www.japan-property.jp/property-for-sale/Osaka"
-    osaka = Parser(OSAKAURL)
-    data = osaka.get_urls_of_pages()
-    for i in data:
-        osaka.get_data_of_properties("https://www.japan-property.jp" + i)  
-
-if __name__ == "__main__":
-    KYOTOURL = "https://www.japan-property.jp/property-for-sale/Kyoto"
-    kyoto = Parser(KYOTOURL)
-    data = kyoto.get_urls_of_pages()
-    for i in data:
-        kyoto.get_data_of_properties("https://www.japan-property.jp" + i)
-
-import json
-from pymongo import MongoClient, errors
+for URL in urls:
+    if __name__ == "__main__":
+        city = Parser(URL)
+        data = city.get_urls_of_pages()
+        for i in data:
+            city.get_data_of_properties("https://www.japan-property.jp" + i)
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client["jp-property"]
