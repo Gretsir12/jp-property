@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 class Convertor:
     """
-    A currency converter for JPY to RUB using live exchange rates from Google Finance.
+    A currency converter for JPY to RUB or RUB to JPY using live exchange rates from Google Finance.
 
     Attributes:
         url (str): The URL to fetch the JPY-RUB exchange rate.
