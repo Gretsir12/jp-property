@@ -48,6 +48,9 @@
   ```bash 
   uvicorn main:app --reload
   ```
+Должно появиться что то вроде:
+<img width="1304" height="282" alt="изображение" src="https://github.com/user-attachments/assets/b15d104b-d25f-44cc-b6fa-2a8aa5022e06" />
+
 
   3. Получение XML фида
 
