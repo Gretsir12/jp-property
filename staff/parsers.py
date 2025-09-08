@@ -126,9 +126,11 @@ class Parser():
     def get_urls_of_pages(self):
         data = []
         options = Options()
-        options.add_argument("--headless")  # Run Chrome in headless mode
-
-        service = Service()  # Specify path to chromedriver if needed
+        options.binary_location = "/usr/bin/chromium-browser"
+        options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        service = Service("/usr/bin/chromedriver")  # Specify path to chromedriver if needed
         driver = webdriver.Chrome(service=service, options=options)
 
         driver.get(self.URL)

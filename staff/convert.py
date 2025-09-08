@@ -33,7 +33,6 @@ class Convertor:
         if convert:
             return float(convert[0].text.replace(',', ''))
         raise ValueError("Exchange rate not found on the page.")
-
     def convert_jpy(self, jpy):
         """
         Converts Japanese Yen (JPY) to Russian Ruble (RUB).
